@@ -2,24 +2,10 @@
 
 {% block content %}
 
-<p>
-Welcome to {{ user.username }}'s profile.
-</p>
-
-<p>
-    {{ user.username }}'s favorite books are:
-
-    <ul>
-        {% for book in user.favorite_books %}
-            <li>{{ book.title }}</li>
-        {% endfor %}
-    </ul>
-</p>
-
-<form method="POST" action="{{ url_for('main.profile', username=user.username) }}">
+<form method="POST" action="{{ url_for('main.create_user') }}">
     {{ form.csrf_token }}
     <fieldset>
-        <legend>Edit this user</legend>
+        <legend>Enter a username</legend>
 
         {{ form.username.label }}
         {{ form.username }}
@@ -33,9 +19,6 @@ Welcome to {{ user.username }}'s profile.
             </ul>
         {% endif %}
         
-        {{ form.books.label }}
-        {{ form.books }}
-            
         {{ form.submit }}
     </fieldset>
 </form>
